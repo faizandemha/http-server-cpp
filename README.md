@@ -1,5 +1,5 @@
 # Multithreaded HTTP/1.1 Server (C++17, raw POSIX sockets)
-
+![CI](https://github.com/faizandemha/http-server-cpp/actions/workflows/ci.yml/badge.svg)
 No web frameworks, no Boost.Asio: just `socket/bind/listen/poll/accept/recv/send`, `std::thread`, `std::mutex` and `std::condition_variable`.
 
 ## Build & run
