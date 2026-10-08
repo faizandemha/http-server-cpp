@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: make
+
+      - name: End-to-end tests
+        run: make test
+
+      - name: ThreadSanitizer run
+        run: |
+          # Newer runner kernels use high ASLR entropy that TSan can't handle
+          sudo sysctl vm.mmap_rnd_bits=28
+          make tsan
+          bash tests/run_tests.sh ./server_tsan
+          ! grep -q "WARNING: ThreadSanitizer" /tmp/server.log

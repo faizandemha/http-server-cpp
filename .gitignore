@@ -1,0 +1,12 @@
+# Build outputs
+server
+server_tsan
+*.o
+*.out
+
+# Editor / OS junk
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
